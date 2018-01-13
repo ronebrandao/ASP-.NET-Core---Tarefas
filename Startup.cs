@@ -26,18 +26,20 @@ namespace Tarefas
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-
+            
+            //Add database context
+            services.AddDbContext<ApplicationDbContext>(options => 
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+            );
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             
             services.AddTransient<ITarefaItemService, TempTarefaItemService>();
-
 
             services.AddMvc();
         }

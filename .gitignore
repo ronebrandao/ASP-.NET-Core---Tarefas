@@ -3,3 +3,16 @@ obj/Debug/netcoreapp2.0/Tarefas.AssemblyInfo.cs
 obj/project.assets.json
 obj/Tarefas.csproj.nuget.g.targets
 obj/Tarefas.csproj.nuget.g.props
+obj/Debug/netcoreapp2.0/Tarefas.csproj.FileListAbsolute.txt
+obj/Debug/netcoreapp2.0/UserSecretsAssemblyInfo.cs
+obj/Tarefas.csproj.EntityFrameworkCore.targets
+bin/Debug/netcoreapp2.0/Tarefas.runtimeconfig.dev.json
+bin/Debug/netcoreapp2.0/Tarefas.runtimeconfig.json
+Data/Migrations/00000000000000_CreateIdentitySchema.cs
+Data/Migrations/00000000000000_CreateIdentitySchema.Designer.cs
+Data/Migrations/00000000000000_CreateIdentitySchema.cs
+bin/Debug/netcoreapp2.0/Tarefas.deps.json
+bin/Debug/netcoreapp2.0/app.db
+Migrations/ApplicationDbContextModelSnapshot.cs
+Migrations/20180113133735_Tarefas.Designer.cs
+Migrations/20180113133735_Tarefas.cs
