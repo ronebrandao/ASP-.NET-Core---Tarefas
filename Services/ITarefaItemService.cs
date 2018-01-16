@@ -6,8 +6,10 @@ namespace Tarefas.Services
 {
     public interface ITarefaItemService
     {
-        // Task > contém > Lista (IEnumerable) > contém > os itens da tarefa
+        // Task > has > List (IEnumerable) > has > task items
           Task<IEnumerable<TarefaItem>> GetItemAsync();
+
+          Task<bool> AdicionarItem(TarefaItem NovoItem);
           
     }
 }

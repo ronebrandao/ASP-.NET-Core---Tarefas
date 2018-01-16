@@ -39,7 +39,8 @@ namespace Tarefas
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             
-            services.AddTransient<ITarefaItemService, TempTarefaItemService>();
+            //To get data from memory instead of the database, just replace TarefaItemService with TempTarefaItemService
+            services.AddTransient<ITarefaItemService, TarefaItemService>();
 
             services.AddMvc();
         }

@@ -16,3 +16,7 @@ bin/Debug/netcoreapp2.0/app.db
 Migrations/ApplicationDbContextModelSnapshot.cs
 Migrations/20180113133735_Tarefas.Designer.cs
 Migrations/20180113133735_Tarefas.cs
+Migrations/20180113202518_TarefasPopularDB.Designer.cs
+Migrations/20180113202518_TarefasPopularDB.cs
+Migrations/20180115164020_Tarefas.cs
+Migrations/20180115164020_Tarefas.Designer.cs

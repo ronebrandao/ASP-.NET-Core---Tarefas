@@ -8,24 +8,44 @@ namespace Tarefas.Controllers
     public class TarefasController : Controller
     {
         ITarefaItemService _TarefaService;
-        //Injeção de dependência
+        //Dependency Injections
         public TarefasController(ITarefaItemService TarefaService)
         {
             _TarefaService = TarefaService;
         }
 
-        //Lista de tarefas
+        //Tasks list
         public async Task<IActionResult> Index()
         {
-            //Obter os dados e retornar
+            //Get data and return to view
             var Tarefas = await _TarefaService.GetItemAsync();
 
-            var model = new TarefaViewModel();
+            var Model = new TarefaViewModel();
             {
-                model.TarefaItens = Tarefas;
+                Model.TarefaItens = Tarefas;
             }
 
-            return View(model);
+            return View(Model);
+        }
+
+        //Used to consult the user
+        [HttpGet]
+        public IActionResult AdicionarItemTarefa()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AdicionarItemTarefa([Bind("Id,EstaCompleta,Nome,DataConclusao")]TarefaItem Tarefa)
+        {
+
+            if(ModelState.IsValid)
+            {
+                await _TarefaService.AdicionarItem(Tarefa);
+                return RedirectToAction(nameof(Index));
+            }
+            
+            return View(Tarefa);
         }
         
     }
