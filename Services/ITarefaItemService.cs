@@ -10,6 +10,12 @@ namespace Tarefas.Services
           Task<IEnumerable<TarefaItem>> GetItemAsync();
 
           Task<bool> AdicionarItem(TarefaItem NovoItem);
+            
+          Task<bool> DeletarItem(int? Id);
+
+          TarefaItem GetTarefaById(int? Id); 
+
+          Task Update(TarefaItem Item);
           
     }
 }

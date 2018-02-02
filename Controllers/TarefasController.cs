@@ -47,6 +47,73 @@ namespace Tarefas.Controllers
             
             return View(Tarefa);
         }
+
+        [HttpGet]
+        public IActionResult Delete(int? Id)
+        {
+            if(Id == null)
+                return NotFound();
+
+            //It does not access EF
+            //It access the service that uses the EF
+            var tarefaItem = _TarefaService.GetTarefaById(Id);
+
+            if(tarefaItem == null)
+                return NotFound();
+
+            return View(tarefaItem);
+
+        }
+
+        //The ActionName method will garantee that in routing, the method used will have the the name defined in it
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int Id)
+        {
+            await _TarefaService.DeletarItem(Id);
+
+            return RedirectToAction(nameof(Index));
+
+        }
+        
+        [HttpGet]
+        public IActionResult Edit(int? Id)
+        {
+            if(Id == null)
+                return NotFound();
+            
+            var TarefaItem = _TarefaService.GetTarefaById(Id);
+
+            if(TarefaItem == null)
+                return NotFound();
+
+            return View(TarefaItem);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int Id, [Bind("Id,EstaCompleta,Nome,DataConclusao")] TarefaItem TarefaItem)
+        {
+
+            if(Id != TarefaItem.Id)
+                return NotFound();
+
+            if(ModelState.IsValid)
+            {
+                try 
+                {
+                    await _TarefaService.Update(TarefaItem);
+                }
+                catch 
+                {
+                    throw;
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(TarefaItem);
+        }
         
     }
 }

@@ -4,13 +4,14 @@ using Tarefas.Data;
 using Tarefas.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Tarefas.Services
 {
     public class TarefaItemService : ITarefaItemService
     {
         private readonly ApplicationDbContext _context;
-        //Dependency Injections
+        //Dependency Injection
         public TarefaItemService(ApplicationDbContext context)
         {
            _context = context;
@@ -41,6 +42,33 @@ namespace Tarefas.Services
 
             return resultado == 1;;
 
+        }
+
+        public async Task<bool> DeletarItem(int? Id)
+        {
+            TarefaItem tarefa = _context.Tarefas.Find(Id);
+            _context.Tarefas.Remove(tarefa);
+
+            //Will return the numbers of rows affected, if only one item have been changed
+            //The task should be successeful
+            var resultado = await _context.SaveChangesAsync();
+
+            return resultado == 1;
+
+        }
+
+        public TarefaItem GetTarefaById(int? Id)
+        {
+            return _context.Tarefas.Find(Id);
+        }
+
+        public async Task Update(TarefaItem item)
+        {
+            if(item == null)
+                throw new ArgumentException(nameof(item));
+
+            _context.Tarefas.Update(item);
+            await _context.SaveChangesAsync();
         }
 
     }
