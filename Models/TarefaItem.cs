@@ -19,6 +19,7 @@ namespace Tarefas.Models
         
         [Required(ErrorMessage="Informe a data de conclusão da tarefa")]
         [Display(Name="Data de Conclusão")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         // "?" * Permite que um tipo valor receba um valor null
         public DateTimeOffset? DataConclusao { get; set; }
         

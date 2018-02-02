@@ -19,9 +19,7 @@ namespace Tarefas.Services
 
         public async Task<IEnumerable<TarefaItem>> GetItemAsync()
         {
-            var tarefas = await _context.Tarefas 
-                        .Where(t => t.EstaCompleta == false)
-                        .ToArrayAsync();
+            var tarefas = await _context.Tarefas.ToArrayAsync();
             
             return tarefas;
         }
